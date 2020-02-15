@@ -33,7 +33,7 @@ function mouseMove(event) {
   let y = event.offsetY;
   context.fillStyle = myColor;
   context.beginPath();
-  context.arc(x, y, 3, 0, Math.PI * 4, false);
+  context.arc(x, y, 10, 0, Math.PI * 4, false);
   context.closePath();
   context.fill();
 }
@@ -80,9 +80,13 @@ clearCanvasButton.addEventListener("click", function() {
 
 //Создаем новую картинку с текущим изображением canvas
 function getImage(canvas){
+  
   const imageData = canvas.toDataURL();
+  console.log(imageData)
+  // console.log(imageData)
   const image = new Image();
   image.src = imageData;
+  
   return image;
 }
 
@@ -117,3 +121,4 @@ allTextButton.forEach(el =>{
     addImage(source);
   })
 })
+
