@@ -1,8 +1,13 @@
 const clearCanvasButton = document.querySelector(".clear-canvas");
 const saveCanvasButton = document.querySelector('.save-canvas');
 const allTextButton = document.querySelectorAll(".btn");
-let myColor = null;
+const btnPlus = document.querySelector('.plus');
+const btnMinus = document.querySelector('.minus');
+const rangeScroll = document.querySelector('.rng');
 
+let myColor = null;
+let imgWidthG = 0;
+let imgHeightG = 0;
 //Выбор цвета
 const cp = ColorPicker(
   document.getElementById("pcr"),
@@ -24,16 +29,29 @@ const cp = ColorPicker(
 );
 cp.setHex("#D4EDFB");
 
+$(function() {
+  var el;
+  $(".rng").change(function() {
+  el = $(this);
+  el
+  .next(".ong")
+  .text(`Розмір: ${el.val()}`);
+  })
+  .trigger('change');
+  });
+
+
 const canvas = document.querySelector(".canvas");
 const context = canvas.getContext("2d");
 
 
 function mouseMove(event) {
+  const sizeBrush = rangeScroll.value;
   let x = event.offsetX;
   let y = event.offsetY;
   context.fillStyle = myColor;
   context.beginPath();
-  context.arc(x, y, 10, 0, Math.PI * 4, false);
+  context.arc(x, y, sizeBrush, 0, Math.PI * 4, false);
   context.closePath();
   context.fill();
 }
@@ -47,8 +65,12 @@ function addImage(src) {
   img.src = src;
 
   img.addEventListener("load", function(event) {
+
     const imgWidth = img.width;
     const imgHeight = img.height;
+
+    imgHeightG = imgHeight;
+    imgWidthG = imgWidthG;
     canvas.width = imgWidth;
     canvas.height = imgHeight;
     context.drawImage(img, 0, 0);
@@ -83,7 +105,6 @@ function getImage(canvas){
   
   const imageData = canvas.toDataURL();
   console.log(imageData)
-  // console.log(imageData)
   const image = new Image();
   image.src = imageData;
   
@@ -121,4 +142,15 @@ allTextButton.forEach(el =>{
     addImage(source);
   })
 })
+
+
+
+
+
+
+
+
+
+
+
 
