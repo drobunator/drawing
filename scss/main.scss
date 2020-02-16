@@ -118,12 +118,13 @@ svg{
       border-radius: 8px;
       padding: 10px;
       display: flex;
-      align-items: center;
+      // justify-content: space-between;
       flex-direction: column;
 
       .rng{
         width: 150px;
         height: 10px;
+        margin-bottom: 15px;
         -webkit-appearance: none;
         background: linear-gradient(top, #d0d0d0 70%, );
 
